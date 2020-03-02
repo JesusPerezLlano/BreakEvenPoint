@@ -12,7 +12,6 @@ audioread==2.1.8
 Automat==0.8.0
 backcall==0.1.0
 beautifulsoup4==4.8.2
-bleach==3.1.0
 bokeh==1.4.0
 boto3==1.11.13
 botocore==1.14.13
@@ -254,17 +253,6 @@ streamz==0.5.2
 sympy==1.5.1
 tabulate==0.8.6
 tblib==1.6.0
-tensor2tensor==1.14.1
-tensorboard==1.15.0
-tensorflow==1.13.2
-tensorflow-cpu==1.15.0
-tensorflow-cpu-estimator==1.15.1
-tensorflow-datasets==2.0.0
-tensorflow-estimator==1.13.0
-tensorflow-gan==2.0.0
-tensorflow-hub==0.7.0
-tensorflow-metadata==0.21.1
-tensorflow-probability==0.7.0
 termcolor==1.1.0
 terminado==0.8.3
 terminaltables==3.1.0
