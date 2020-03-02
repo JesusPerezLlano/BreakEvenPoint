@@ -188,10 +188,6 @@ app.layout = html.Div([
 #PREDICT VALUE MACHINE LEARNING FUNCTIONS
 ############################################
 import numpy as np 
-from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVR
-from sklearn.model_selection import train_test_split
-
 
 
 
