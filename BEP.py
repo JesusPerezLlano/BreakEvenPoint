@@ -11,8 +11,7 @@ import plotly.graph_objs as go
 
 # pydata stack
 import pandas as pd
-from sqlalchemy import create_engine
-import yfinance as yf
+#from sqlalchemy import create_engine
 
 #Read CSV
 import csv
