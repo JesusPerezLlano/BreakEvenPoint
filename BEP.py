@@ -15,6 +15,9 @@ import pandas as pd
 
 #Read CSV
 import csv
+import flask
+from random import randint
+
 
 
 # set params
@@ -47,7 +50,16 @@ ALLOWED_TYPES = ("number")
 #    "text", "number", "password", "email", "search",
 #    "tel", "url", "range", "hidden",)
 
-app = dash.Dash()
+#app = dash.Dash()
+
+# Setup the app
+# Make sure not to change this file name or the variable names below,
+# the template is configured to execute 'server' on 'app.py'
+server = flask.Flask(__name__)
+server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
+app = dash.Dash(__name__, server=server)
+
+
 
 app.layout = html.Div([
     html.H2("Calculo ROI ARCH para su negocio"),
