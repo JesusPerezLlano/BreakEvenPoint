@@ -28,14 +28,7 @@ from random import randint
 # Data Manipulation / Model
 ###########################
 
-def readCSV():
-    data=pd.read_csv('Calculo_de_BEP.csv', header=None)
-    #with open('Calculo_de_BEP.csv', newline='') as csvfile:
-    #    data = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    #    for row in data:
-    #        print(', '.join(row))
-    return data
-# standard library
+
 import os
 
 # dash libs
@@ -55,15 +48,6 @@ import csv
 import flask
 from random import randint
 
-
-
-# set params
-#conn = create_engine(os.environ['DB_URI'])
-
-
-###########################
-# Data Manipulation / Model
-###########################
 
 def readCSV():
     data=pd.read_csv('Calculo_de_BEP.csv', header=None)
