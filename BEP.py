@@ -11,15 +11,12 @@ import plotly.graph_objs as go
 
 # pydata stack
 import pandas as pd
-from sqlalchemy import create_engine
-import yfinance as yf
+#from sqlalchemy import create_engine
 
 #Read CSV
 import csv
-
-
-# set params
-#conn = create_engine(os.environ['DB_URI'])
+import flask
+from random import randint
 
 
 ###########################
@@ -48,10 +45,30 @@ ALLOWED_TYPES = ("number")
 #    "text", "number", "password", "email", "search",
 #    "tel", "url", "range", "hidden",)
 
-app = dash.Dash()
+#app = dash.Dash()
+
+# Setup the app
+# Make sure not to change this file name or the variable names below,
+# the template is configured to execute 'server' on 'app.py'
+server = flask.Flask(__name__)
+server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
+app = dash.Dash(__name__, server=server)
+
+import base64
+
+
+image_filename = 'TedCas.png' # replace with your own image
+encoded_image = base64.b64encode(open(image_filename, 'rb').read()).decode('ascii')
+#test_base64 = base64.b64encode(open(test_png, 'rb').read()).decode('ascii')
+
+
 
 app.layout = html.Div([
+    html.Div([
+    html.Img(src='data:image/png;base64,{}'.format(encoded_image), style={'height':'10%', 'width':'10%'})
+    ]),
     html.H2("Calculo ROI ARCH para su negocio"),
+   
     #We create a container of 25% of the width of the page
     html.Div([
         #We add three containers inside (three dropdowns). Each one is 100% of width in order to fit one below the other (if they were for example 50%, they would be shown one beside the other)
@@ -189,10 +206,6 @@ app.layout = html.Div([
 #PREDICT VALUE MACHINE LEARNING FUNCTIONS
 ############################################
 import numpy as np 
-from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVR
-from sklearn.model_selection import train_test_split
-
 
 
 
