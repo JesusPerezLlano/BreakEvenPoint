@@ -390,7 +390,7 @@ app.layout = html.Div([
                     dcc.Input(
                     id="Cantidad1",
                     type="number",
-                    placeholder=8#"input type {}".format("number")
+                    placeholder=20#"input type {}".format("number")
                     ), style={'width': '16%', 'display': 'inline-block'}
      
                     ),
@@ -403,7 +403,7 @@ app.layout = html.Div([
                     dcc.Input(
                     id="Coste1",
                     type="number",
-                    placeholder=20#"input type {}".format("number")
+                    placeholder=30#"input type {}".format("number")
                     ), style={'width': '16%', 'display': 'inline-block'}
                                        
                     ),
