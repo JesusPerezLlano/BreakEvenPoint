@@ -372,9 +372,21 @@ app = dash.Dash(__name__, server=server)
 
 app.layout = html.Div([
     html.Div([
-    html.Img(src='data:image/png;base64,{}'.format(encoded_image), style={'height':'10%', 'width':'10%'})
-    ]),
-    html.H2("Calculo ROI ARCH para su negocio"),
+        html.Div([
+            html.Img(src='data:image/png;base64,{}'.format(encoded_image), className='three columns')#, style={'width': '16%', 'display': 'inline-block'})
+            ],   style={'textAlign': 'center'}),    
+       # html.Div([
+       #     html.H2("Calculo ROI ARCH para su negocio", className='three columns')#, style={'width': '16%', 'display': 'inline-block'})   
+       #     ],   style={'textAlign': 'center'}),
+            ],
+        style={'width': '100%', 'display': 'inline-block'}),
+   
+
+
+   
+
+
+
    
     #We create a container of 25% of the width of the page
     html.Div([
@@ -425,7 +437,7 @@ app.layout = html.Div([
             style={'width': '100%', 'display': 'inline-block'}),
             html.Div([
 
-                   #First Column: title
+                #First Column: title
                 html.Div(df2.iloc[2,0], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
                 #Second column: data
                 html.Div(
