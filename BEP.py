@@ -305,9 +305,14 @@ import numpy as np
 #Each input of the function is one of the inputs above
 def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionMensual):
     #coste=[]
-    coste = np.arange(12)
-    inversion = np.arange(12)
-    mes=[1,2,3,4,5,6,7,8,9,10,11,12]
+    
+    mes=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+    nummeses=len(mes)
+    coste = np.arange(nummeses)
+    inversion = np.arange(nummeses)
+    PRI_vector= np.arange(nummeses)
+    Beneficio = np.arange(nummeses)
+
     #Ciclo de un año
     #Protección frente a Nulls
     #region Proteccion
@@ -340,41 +345,48 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
     else:
         IM=InversionMensual
     #endregion
+    PRI=0
     #Fin de la protección   
     for i in mes:
         #Calculamos coste acumulativo por mes (cada mes el coste es el del anterior más el actual)
         #print(Ca1, Co1, Ca2, Co2, IF, IM)
         coste[i-1]=Ca1*Co1*i+Ca2*Co2*i
         inversion[i-1]=IF+i*IM
+        if coste[i-1]>inversion[i-1]:
+            PRI_vector[i-1]=inversion[i-1]
+            Beneficio[i-1]=coste[i-1]
+        else:
+            PRI_vector[i-1]=coste[i-1]
+            Beneficio[i-1]=inversion[i-1]
+        #Beneficio[i-1]=coste[i-1]-PRI_vector[i-1]
         #print ("Coste =" + str(coste[i-1]) + "Inversion = " + str(inversion[i-1]))
     
-    
+
     xval=mes
-    yval=np.array([coste,inversion])
-    title=["Ahorro","Inversion"]
-   
+    yval=np.array([coste,inversion,Beneficio])
+    print(Beneficio)
+    title=["Gasto actual","Inversion ARCH", "Beneficio"]
+    fillcolor=[None,None,'tonexty']
+    mode_line=['lines','lines', 'none']
+    #fillcolor=[None,'tonexty']
 
 
     figure={
             'data': [
             go.Scatter(
                 x=xval ,
-                #y=plot_frame[Accion],
-                #y=y,
                 y = yval[row].tolist(),
-                #text="azul",
-                mode='lines', #markers
+                mode=mode_line[row],#'lines', #markers
                 opacity=0.7,
                 marker={
                     'size': 10,
                     'line': {'width': 0.5, 'color': 'white'}
                 },
-                name=title[row]
+                name=title[row],
+                fill=fillcolor[row]
             )for row in range(len(yval))
             ],
             'layout': go.Layout(
-                #xaxis={'type': 'log', 'title': 'GDP Per Capita'},
-                #yaxis={'title': 'Customer Order Status for {}'.format(Accion)},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 #legend={'x': 0, 'y': 1},
                 xaxis = {'title': 'Mes'},
