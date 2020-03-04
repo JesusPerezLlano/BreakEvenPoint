@@ -78,7 +78,42 @@ ALLOWED_TYPES = ("number")
 # the template is configured to execute 'server' on 'app.py'
 server = flask.Flask(__name__)
 server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
-app = dash.Dash(__name__, server=server)
+
+
+
+external_stylesheets = ['https://codepen.io/anon/pen/mardKv.css']
+#cssURL = "https://rawgit.com/richard-muir/uk-car-accidents/master/road-safety.css"
+# external CSS stylesheets
+external_stylesheets = [
+    'https://codepen.io/chriddyp/pen/bWLwgP.css',
+    {
+        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+        'rel': 'stylesheet',
+        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
+        'crossorigin': 'anonymous'
+    }
+]
+external_stylesheets = ['https://github.com/plotly/dash-app-stylesheets/blob/master/dash-oil-and-gas.css']
+
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=server)
+
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF',
+    'foreground': '#FFA500',
+    'background2': '#C0C0C0',
+    'none': '#FFFFFF'
+}
+
+#app = dash.Dash(__name__,  server=server)
+
+# Include the external CSS
+
+#app.css.append_css({
+#    "external_url": cssURL
+#})
+
 
 import base64
 
@@ -95,13 +130,13 @@ encoded_image = base64.b64encode(open(image_filename, 'rb').read()).decode('asci
 #    ]),
 #    html.H2("Calculo ROI ARCH para su negocio"),
 
-app.layout = html.Div([
+app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-container', children=[
     html.Div([
         html.Div([
             html.Img(src='data:image/png;base64,{}'.format(encoded_image), className='three columns', style={'height':'10%', 'width':'10%'})#, style={'width': '16%', 'display': 'inline-block'})
-            ],   style={'textAlign': 'center'}),    
+            ],   style={'textAlign': 'center','backgroundColor': colors['foreground']},),    
         html.Div([
-            html.H1("Calculo PRI ARCH para su negocio", className='three columns')#, style={'width': '16%', 'display': 'inline-block'})   
+            html.H2("Calculo PRI ARCH para su negocio", className='three columns')#, style={'width': '16%', 'display': 'inline-block'})   
            ],   style={'textAlign': 'center'}),
             ],
         style={'width': '100%', 'display': 'inline-block'}),
@@ -234,7 +269,7 @@ app.layout = html.Div([
                     
 
 
-    dcc.Graph(id='ROIPrediction'),
+    html.Div(style={'backgroundColor': colors['background2']}, id='graph-container', children=[dcc.Graph(id='ROIPrediction')])
 ])
 
 
@@ -316,7 +351,7 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
     
     xval=mes
     yval=np.array([coste,inversion])
-    title=["ahorro","inversion"]
+    title=["Ahorro","Inversion"]
    
 
 
@@ -343,7 +378,8 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 #legend={'x': 0, 'y': 1},
                 xaxis = {'title': 'Mes'},
-                yaxis = {'title': 'Coste'}
+                yaxis = {'title': 'Coste'},
+                plot_bgcolor = colors['background2']
                 #hovermode='closest'
                 )
         
