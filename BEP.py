@@ -36,6 +36,7 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 import plotly.figure_factory as ff
 import plotly.graph_objs as go
 
@@ -94,9 +95,18 @@ external_stylesheets = [
     }
 ]
 external_stylesheets = ['https://github.com/plotly/dash-app-stylesheets/blob/master/dash-oil-and-gas.css']
+external_stylesheets = ['https://codepen.io/anon/pen/mardKv.css']
+
 
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=server)
+#app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY], server=server)
+theme =  {
+    'dark': True,
+    'detail': '#007439',
+    'primary': '#00EA64',
+    'secondary': '#6E6E6E',
+}
 
 colors = {
     'background': '#111111',
@@ -265,12 +275,14 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
             #],
             #style={'width': '100%', 'display': 'inline-block'}),
                        
-         ], style={'width': '75%','display': 'inline-block'}),
+         ], style={'width': '100%','display': 'inline-block' ,'backgroundColor': colors['background2']}),
                     
 
-
-    html.Div(style={'backgroundColor': colors['background2']}, id='graph-container', children=[dcc.Graph(id='ROIPrediction')])
+    html.Div(style={'backgroundColor': colors['background2']}, id='graph-container', 
+             children=[dcc.Graph(id='ROIPrediction', config = {'displaylogo': False})])
 ])
+
+
 
 
 #############################################
@@ -365,7 +377,7 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
     xval=mes
     yval=np.array([coste,inversion,Beneficio])
     print(Beneficio)
-    title=["Gasto actual","Inversion ARCH", "Beneficio"]
+    title=["Gasto actual","Inversion ARCH", "Beneficio (Area verde)"]
     fillcolor=[None,None,'tonexty']
     mode_line=['lines','lines', 'none']
     #fillcolor=[None,'tonexty']
@@ -384,6 +396,7 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
                 },
                 name=title[row],
                 fill=fillcolor[row]
+                #template="plotly_dark"
             )for row in range(len(yval))
             ],
             'layout': go.Layout(
@@ -391,11 +404,12 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
                 #legend={'x': 0, 'y': 1},
                 xaxis = {'title': 'Mes'},
                 yaxis = {'title': 'Coste'},
-                plot_bgcolor = colors['background2']
-                #hovermode='closest'
+                plot_bgcolor = colors['background2'],
+                paper_bgcolor = colors['background2']
                 )
-        
+            
         }
+        
 
     return figure
 
