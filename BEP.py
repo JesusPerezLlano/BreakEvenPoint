@@ -146,7 +146,7 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
             html.Img(src='data:image/png;base64,{}'.format(encoded_image), className='three columns', style={'height':'10%', 'width':'10%'})#, style={'width': '16%', 'display': 'inline-block'})
             ],   style={'textAlign': 'center','backgroundColor': colors['foreground']},),    
         html.Div([
-            html.H2("Calculo PRI ARCH para su negocio", className='three columns')#, style={'width': '16%', 'display': 'inline-block'})   
+            html.H2("Cálculo PRI ARCH para su negocio", className='three columns')#, style={'width': '16%', 'display': 'inline-block'})   
            ],   style={'textAlign': 'center'}),
             ],
         style={'width': '100%', 'display': 'inline-block'}),
@@ -161,7 +161,7 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                 #html.Div('Acción', className='three columns', style={'width': '50%', 'display': 'inline-block'}),
                 #6 columns
                 #First Column: title
-                html.Div(df2.iloc[1,0], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
+                html.Div(df2.iloc[1,0], className='three columns', style={'width': '10%', 'display': 'inline-block'}),
                 #Second column: data
                 html.Div(
                     
@@ -169,12 +169,12 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                     id="Cantidad1",
                     type="number",
                     placeholder=40#"input type {}".format("number")
-                    ), style={'width': '16%', 'display': 'inline-block'}
+                    ), style={'width': '22%', 'display': 'inline-block'}
      
                     ),
                                 
                 #Third Column: title
-                html.Div(df2.iloc[1,1], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
+                html.Div(df2.iloc[1,1], className='three columns', style={'width': '10%', 'display': 'inline-block'}),
                 
                 #Fourth column: data
                 html.Div(
@@ -182,12 +182,12 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                     id="Coste1",
                     type="number",
                     placeholder=30#"input type {}".format("number")
-                    ), style={'width': '16%', 'display': 'inline-block'}
+                    ), style={'width': '22%', 'display': 'inline-block'}
                                        
                     ),
                 
                 #Fifth Column: title
-                html.Div(df2.iloc[1,2], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
+                html.Div(df2.iloc[1,2], className='three columns', style={'width': '10%', 'display': 'inline-block'}),
                 
                 #Sixth column: data
                 html.Div(
@@ -196,7 +196,7 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                     id="InversionFija",
                     type="number",
                     placeholder=8000#"input type {}".format("number")
-                    ), style={'width': '16%', 'display': 'inline-block'}
+                    ), style={'width': '22%', 'display': 'inline-block'}
                     
                     ),
             ],
@@ -204,7 +204,7 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
             html.Div([
 
                    #First Column: title
-                html.Div(df2.iloc[2,0], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
+                html.Div(df2.iloc[2,0], className='three columns', style={'width': '10%', 'display': 'inline-block'}),
                 #Second column: data
                 html.Div(
                     
@@ -212,12 +212,12 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                     id="Cantidad2",
                     type="number",
                     placeholder=300#"input type {}".format("number")
-                    ), style={'width': '16%', 'display': 'inline-block'}
+                    ), style={'width': '22%', 'display': 'inline-block'}
 
                    ),
                                 
                 #Third Column: title
-                html.Div(df2.iloc[2,1], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
+                html.Div(df2.iloc[2,1], className='three columns', style={'width': '10%', 'display': 'inline-block'}),
                 
                 #Fourth column: data
                 html.Div(
@@ -225,12 +225,12 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                     id="Coste2",
                     type="number",
                     placeholder=0.005#"input type {}".format("number")
-                    ), style={'width': '16%', 'display': 'inline-block'}
+                    ), style={'width': '22%', 'display': 'inline-block'}
                                        
                     ),
                 
                 #Fifth Column: title
-                html.Div(df2.iloc[2,2], className='three columns', style={'width': '16%', 'display': 'inline-block'}),
+                html.Div(df2.iloc[2,2], className='three columns', style={'width': '10%', 'display': 'inline-block'}),
                 
                 #Sixth column: data
                 html.Div(
@@ -239,7 +239,7 @@ app.layout = html.Div(style={'backgroundColor': colors['none']}, id='dark-theme-
                     id="InversionMensual",
                     type="number",
                     placeholder=300#"input type {}".format("number")
-                    ), style={'width': '16%', 'display': 'inline-block'}
+                    ), style={'width': '22%', 'display': 'inline-block'}
                     
                     ),
 
@@ -377,7 +377,7 @@ def update_graph(Cantidad1, Coste1, Cantidad2, Coste2, InversionFija, InversionM
     xval=mes
     yval=np.array([coste,inversion,Beneficio])
     print(Beneficio)
-    title=["Gasto actual","Inversion ARCH", "Beneficio (Area verde)"]
+    title=["Gasto actual","Inversión ARCH", "Beneficio (Area verde)"]
     fillcolor=[None,None,'tonexty']
     mode_line=['lines','lines', 'none']
     #fillcolor=[None,'tonexty']
